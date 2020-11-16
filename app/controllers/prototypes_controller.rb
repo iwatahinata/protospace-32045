@@ -3,8 +3,10 @@ class PrototypesController < ApplicationController
   before_action :move_to_index, only: :edit
 
   def index
-    @name = current_user.name
-    @prototypes = Prototype.includes(:user)
+     @prototypes = Prototype.includes(:user)
+     if user_signed_in?
+       @name = current_user.name
+     end
   end
 
   def new
